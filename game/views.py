@@ -66,7 +66,7 @@ def user_login(request):
                     categories=set()
                     for game in games:
                         categories.add(game.game_category)
-                    return render_to_response('main.html', {'user': userInfo,'games':games,'categories':categories})  
+                    return render_to_response('main.html', {'user': userInfo,'games':games,'categories':categories})
         elif inputUser:
             try:
                 regiEmail = request.POST.get('regiEmail', '')
@@ -90,7 +90,7 @@ def user_login(request):
                         u'Please click link to finish registration:',
                         '/'.join(['http://newmysite1.herokuapp.com', 'account/activate', token])
                     ])
-                    errors.append('/'.join(['http://newmysite1.herokuapp.com', 'account/activate', token])
+                    errors.append('/'.join(['http://newmysite1.herokuapp.com', 'account/activate', token]))
                     with mail.get_connection() as connection:
                         mail.EmailMessage(
                             u'Registration Validation', message, None, [regiEmail],
