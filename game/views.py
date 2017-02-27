@@ -66,7 +66,7 @@ def user_login(request):
                     categories=set()
                     for game in games:
                         categories.add(game.game_category)
-                    return render_to_response('main.html', {'user': userInfo,'games':games,'categories':categories})  # 这句是跳转的决定语句
+                    return render_to_response('main.html', {'user': userInfo,'games':games,'categories':categories})  
         elif inputUser:
             try:
                 regiEmail = request.POST.get('regiEmail', '')
