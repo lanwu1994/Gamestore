@@ -39,5 +39,5 @@ urlpatterns = [
     url(r'^edit/(.*)/(.*)/$', game_edit),
     url(r'^payment/(.*)/?.*/$',payment_success),
     url(r'^gameInfo/(.*)/(.*)/$', gameInfo),
+    url(r'^mygame/$',TemplateView.as_view(template_name='mygame.html'))
 ]
-
