@@ -60,8 +60,7 @@ def user_login(request):
                     userInfo = user[0]
                     #response=auth_views.login(request,'main.html',extra_context={'userInfo': userInfo})
                     remember_me = request.POST.get('remember_me', '')
-                    if remember_me=='':
-                        request.session.set_expiry(0)
+                    
                     games=Game.objects.all()
                     categories=set()
                     for game in games:
