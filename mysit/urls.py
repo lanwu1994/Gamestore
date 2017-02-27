@@ -23,7 +23,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^',user_login),
+    url(r'^$',user_login),
     url(r'^login/$',user_login),
     url(r'^login/(.*?)/$', logo_login),
     url(r'^login/forgetpassword/$',forget_password),
