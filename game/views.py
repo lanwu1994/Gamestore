@@ -10,7 +10,7 @@ from itsdangerous import URLSafeTimedSerializer as utsr
 from django.template import context, RequestContext
 from django.shortcuts import render_to_response, render, redirect
 from game.models import *
-from mysite.settings import SECRET_KEY
+from mysit.settings import SECRET_KEY
 from hashlib import md5
 import random
 
@@ -66,7 +66,7 @@ def user_login(request):
                     categories=set()
                     for game in games:
                         categories.add(game.game_category)
-                    return render_to_response('main.html', {'user': userInfo,'games':games,'categories':categories})  
+                    return render_to_response('main.html', {'user': userInfo,'games':games,'categories':categories})  # 这句是跳转的决定语句
         elif inputUser:
             try:
                 regiEmail = request.POST.get('regiEmail', '')
