@@ -13,9 +13,31 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+
+from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.generic import TemplateView
+from django.views.generic import RedirectView
+from game.views import *
+from django.conf.urls.static import static
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^login/$',user_login),
+    url(r'^login/(.*?)/$', logo_login),
+    url(r'^login/forgetpassword/$',forget_password),
+    url(r'^login/resetpassword/(.*)/$',set_new_password),
+    url(r'^category/(.*)/(.*)/$',category),
+    url(r'^account/activate/(.*)/$',active_user),
+    url(r'^account/password/(.*)/$',set_new_password),
+    url(r'^accountManager/(.*)/$',management),
+    url(r'^search/(.*)/$',search_game),
+    url(r'^contact/(.*)/$',contact),
+    url(r'^usergame/(.*)/$',usergame),
+    url(r'^pay/(.*)/(.*)/$', payment),
+    url(r'^play/(.*)/(.*)/$', play, name='play'),
+    url(r'^edit/(.*)/(.*)/$', game_edit),
+    url(r'^payment/(.*)/?.*/$',payment_success),
+    url(r'^gameInfo/(.*)/(.*)/$', gameInfo),
 ]
+
