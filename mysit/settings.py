@@ -23,7 +23,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__)
 SECRET_KEY = '=tt)0vafons^rt7&j5d6=o$l2tw%_panrwcna=crzbc5pd6201'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -134,7 +134,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 if "DYNO" in os.environ:
-    STATIC_ROOT = 'staticfiles'
+    STATIC_ROOT = 'collectedfiles'
     import dj_database_url
     DATABASES['default'] =  dj_database_url.config()
 
