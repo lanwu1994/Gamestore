@@ -90,11 +90,11 @@ def user_login(request):
                         '/'.join(['http://newmysite1.herokuapp.com', 'account/activate', token])
                     ])
                     errors.append('/'.join(['http://newmysite1.herokuapp.com', 'account/activate', token]))
-                    with mail.get_connection() as connection:
-                        mail.EmailMessage(
-                            u'Registration Validation', message, None, [regiEmail],
-                            connection=connection,
-                        ).send()
+                    #with mail.get_connection() as connection:
+                    #    mail.EmailMessage(
+                    #        u'Registration Validation', message, None, [regiEmail],
+                    #        connection=connection,
+                    #    ).send()
                     newData = User(user_name=inputUser, user_password=inputPassword, user_email=regiEmail, user_category=regiCate,user_image=regiImg,user_valid=False)
                     newData.user_category='2'
                     newData.save()
