@@ -212,7 +212,7 @@ def management(request,user_email):
     import datetime
     if inputGame:
         if 'uploadFromPC' in request.FILES:
-            image=request.FILES['uploadFromPC']
+            image=request.FILES['uploadFromPC'].read()
             #image.name = datetime.datetime.now().strftime("%d-%s") + '.jpg'
             with open(image, 'rb') as f:
                 data = f.read()
