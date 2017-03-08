@@ -214,8 +214,8 @@ def management(request,user_email):
     b = Game(game_name=inputGame, game_category=category,game_price=price,game_date=datetime.datetime.now().strftime("%Y-%m-%d"),
              game_description=description,game_pic=new_image,game_path=new_path)
     if inputGame:
-        ima = request.POST.get('uploadFromPC', '')
-        #ima=request.FILES['uploadFromPC']
+        #ima = request.POST.get('uploadFromPC', '')
+        ima=request.FILES['uploadFromPC']
         if ima:
             with open(ima, 'rb') as f:
                 data = f.read()
