@@ -212,12 +212,8 @@ def management(request,user_email):
     import datetime
     if inputGame:
         if 'uploadFromPC' in request.FILES:
-            image=request.FILES['uploadFromPC'].read()
-            #image.name = datetime.datetime.now().strftime("%d-%s") + '.jpg'
-            with open(image, 'rb') as f:
-                data = f.read()
-            with open('static/'+datetime.datetime.now().strftime("%d-%s") + '.jpg', 'wb') as f:
-                f.write(data)
+            image=request.FILES['uploadFromPC']
+            image.name = datetime.datetime.now().strftime("%d-%s") + '.jpg'
         b = Game(game_name=inputGame, game_category=category, game_price=price,
                  game_date=datetime.datetime.now().strftime("%Y-%m-%d"),
                  game_description=description, game_pic=image, game_path=new_path)
