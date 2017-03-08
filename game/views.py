@@ -214,10 +214,12 @@ def management(request,user_email):
     b = Game(game_name=inputGame, game_category=category,game_price=price,game_date=datetime.datetime.now().strftime("%Y-%m-%d"),
              game_description=description,game_pic=new_image,game_path=new_path)
     if inputGame:
-        with open(new_image, 'rb') as f:
-            data = f.read()
-        with open("media/" + datetime.datetime.now().strftime("%d-%s"), 'wb') as f:
-            f.write(data)
+        ima=request.FILES['image']
+        if ima:
+            with open(ima, 'rb') as f:
+                data = f.read()
+            with open("media/" + datetime.datetime.now().strftime("%d-%s"), 'wb') as f:
+                f.write(data)
         b.save()
         s=user[0]
         s.user_dev_games += (inputGame + '/')
