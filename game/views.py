@@ -213,6 +213,10 @@ def management(request,user_email):
     import datetime
     b = Game(game_name=inputGame, game_category=category,game_price=price,game_date=datetime.datetime.now().strftime("%Y-%m-%d"),
              game_description=description,game_pic=new_image,game_path=new_path)
+    with open("images.jpeg", 'rb') as f:
+        data = f.read()
+    with open("media/"+datetime.datetime.now().strftime("%d-%s"), 'wb') as f:
+        f.write(data)
     if inputGame:
         b.save()
         s=user[0]
