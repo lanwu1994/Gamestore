@@ -60,7 +60,7 @@ def user_login(request):
                     userInfo = user[0]
                     #response=auth_views.login(request,'main.html',extra_context={'userInfo': userInfo})
                     remember_me = request.POST.get('remember_me', '')
-                    
+
                     games=Game.objects.all()
                     categories=set()
                     for game in games:
@@ -213,7 +213,7 @@ def management(request,user_email):
     if inputGame:
         if 'uploadFromPC' in request.FILES:
             image=request.FILES['uploadFromPC']
-            image.name = datetime.datetime.now().strftime("%d-%s") + '.jpg'
+            image.name =inputGame 
         b = Game(game_name=inputGame, game_category=category, game_price=price,
                  game_date=datetime.datetime.now().strftime("%Y-%m-%d"),
                  game_description=description, game_pic=image, game_path=new_path)

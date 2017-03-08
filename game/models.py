@@ -1,9 +1,10 @@
 
 # Create your models here.
 from __future__ import unicode_literals
+import PIL
 from django.db import models
 from django.core.files.storage import FileSystemStorage
-fs = FileSystemStorage(location='/static')
+fs = FileSystemStorage(location='/media')
 # Create your models here.
 class User(models.Model):
     user_id=models.AutoField(primary_key=True)
