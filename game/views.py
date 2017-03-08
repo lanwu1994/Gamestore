@@ -14,6 +14,7 @@ from mysit.settings import SECRET_KEY
 from hashlib import md5
 import random
 
+
 class Token:
     def __init__(self,security_key):
         self.security_key = security_key
@@ -208,15 +209,19 @@ def management(request,user_email):
     description = request.POST.get('description', '')
     category = request.POST.get('category', 'Action')
     new_path = request.POST.get('url', '')
+    new_image=request.POST.get('image', '')#image_path
     mess3=''
     import datetime
+
     if inputGame:
-        if 'uploadFromPC' in request.FILES:
-            image=request.FILES['uploadFromPC']
-            image.name =inputGame 
-        b = Game(game_name=inputGame, game_category=category, game_price=price,
-                 game_date=datetime.datetime.now().strftime("%Y-%m-%d"),
-                 game_description=description, game_pic=image, game_path=new_path)
+        if 'image' in request.FILES:
+            image = request.FILES['image']
+            image.name = datetime.datetime.now().strftime("%d-%s")
+        b = Game(game_name=inputGame, game_category=category,game_price=price,game_date=datetime.datetime.now().strftime("%Y-%m-%d"),
+                game_description=description,game_pic=new_image,game_path=new_path)
+                
+        # with open('media/'+datetime.datetime.now().strftime("%d-%s"), 'wb') as f:
+        #     f.write(data)
         b.save()
         s=user[0]
         s.user_dev_games += (inputGame + '/')
