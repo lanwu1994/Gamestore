@@ -9,7 +9,7 @@
 		<div class="col-md-12">
 		<h3>Edit Game<h3>
 		<span style="color: red">{{ status }}</span>
-		<form class="form-horizontal" role="form"  method="post">{% csrf_token %}
+		<form class="form-horizontal" role="form"  method="post" enctype="multipart/form-data">{% csrf_token %}
 			<div class="form-group">
 				<label for="inputGame" class="col-sm-3 control-label">Game Name</label>
 				<div class="col-sm-9">
@@ -49,7 +49,7 @@
 				<label for="image" class="col-sm-3 control-label custom-file">Image</label>
 				<div class="col-sm-9">
 					<input type='hidden' name='MAX_FILE_SIZE' value='2000000' />
-					<input type="file" class="file" id="uploadFromPC" name="uploadFromPC">
+					<input type="file" class="file" id="uploadFromPC" name="uploadFromPC" onchange="readURL(this);">
 				</div>
 			</div>
 			<div class="form-group">
