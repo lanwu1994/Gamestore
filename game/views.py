@@ -208,19 +208,19 @@ def management(request,user_email):
     description = request.POST.get('description', '')
     category = request.POST.get('category', 'Action')
     new_path = request.POST.get('url', '')
-    new_image=request.POST.get('image', '')
     mess3=''
     import datetime
-    b = Game(game_name=inputGame, game_category=category,game_price=price,game_date=datetime.datetime.now().strftime("%Y-%m-%d"),
-             game_description=description,game_pic=new_image,game_path=new_path)
     if inputGame:
-        #ima = request.POST.get('uploadFromPC', '')
-        ima=request.FILES['uploadFromPC']
-        if ima:
-            with open(ima, 'rb') as f:
+        if 'uploadFromPC' in request.FILES:
+            image=request.FILES['uploadFromPC']
+            #image.name = datetime.datetime.now().strftime("%d-%s") + '.jpg'
+            with open(image, 'rb') as f:
                 data = f.read()
-            with open("media/" + datetime.datetime.now().strftime("%d-%s"), 'wb') as f:
+            with open('static/'+datetime.datetime.now().strftime("%d-%s") + '.jpg', 'wb') as f:
                 f.write(data)
+        b = Game(game_name=inputGame, game_category=category, game_price=price,
+                 game_date=datetime.datetime.now().strftime("%Y-%m-%d"),
+                 game_description=description, game_pic=image, game_path=new_path)
         b.save()
         s=user[0]
         s.user_dev_games += (inputGame + '/')

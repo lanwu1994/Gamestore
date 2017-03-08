@@ -22,7 +22,7 @@ class Game(models.Model):
     game_date=models.DateField(blank=True)
     game_description=models.CharField(max_length=255)
     game_sale=models.IntegerField(max_length=10,default=0)
-    game_pic=models.CharField(max_length=150,blank=True,null=True)
+    game_pic=models.ImageField(upload_to='photos/',blank=True,null=True)
     game_path=models.CharField(max_length=150,blank=True,null=True)
     player=models.ManyToManyField(User,blank=True,null=True)
     #developer=models.ForeignKey(User,blank=True,null=True)
