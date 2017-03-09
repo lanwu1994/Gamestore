@@ -340,8 +340,8 @@ def play(request, userEmail,game_name):
             if int(item.score)>max_score:
                 max_score=int(item.score)
                 max_score_wrap=item
-
-    dis_score = 100
+    if request.method == 'POST':
+        dis_score = json.loads(request.body)
 
 
     temp_score=''
