@@ -342,7 +342,7 @@ def play(request, userEmail,game_name):
                 max_score_wrap=item
 
     dis_score = 0
-    dis_score2 = request.body
+    dis_score2 = request.GET.get('score')
 
     temp_score=''
     all_scores = Score.objects.filter(player__exact=user[0].user_id).filter(game__exact=game[0].game_id)
