@@ -5,14 +5,14 @@ window.addEventListener('message',function(e){
     document.getElementById('id_score').value=submitscore;
     console.log(submitscore);
 
-
+    $("#play_form").submit(function(ev){
       console.log('ygu');
       $.ajax({
         type:"POST",
         url:window.location.href,
-        data: JSON.stringify({score:submitscore,
-      }),
-        csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+        data: {score:submitscore,
+            csrfmiddlewaretoken: '{{csrf_token}}'
+        },
         success: function(response){
           console.log("Submit score success, sore is " +submitscore);
         },
