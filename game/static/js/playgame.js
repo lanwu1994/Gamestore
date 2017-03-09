@@ -11,7 +11,7 @@ window.addEventListener('message',function(e){
         type:"POST",
         url:window.location.href,
         data: JSON.stringify({score:submitscore,
-            csrfmiddlewaretoken: '{{csrf_token}}'
+            csrfmiddlewaretoken: {{csrf_token}}
         }),
         success: function(response){
           console.log("Submit score success, sore is " +submitscore);
