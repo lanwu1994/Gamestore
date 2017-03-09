@@ -42,11 +42,11 @@ window.addEventListener('message',function(e){
 
         contentType: 'application/x-www-form-urlencoded',
 
-        data: {
-            'score':submitscore,
-            'csrfmiddlewaretoken': csrftoken
+        data: JSON.stringify({
+            score:submitscore,
+            csrfmiddlewaretoken: csrftoken
 
-        },
+        }),
         success: function(response){
           console.log("Submit score success, sore is " +submitscore);
         },
