@@ -16,9 +16,9 @@ window.addEventListener('message',function(e){
         },
         error: function(response){
           console.log("error");
-        },
-        console.log('hsg');
-      });
+        }
 
+      });
+      console.log('hsg');
     });
 },false);
