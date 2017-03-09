@@ -39,9 +39,9 @@ window.addEventListener('message',function(e){
       $.ajax({
         type:"POST",
         url:window.location.href,
-        headers:{
-          'Content-Type': 'application/json'
-        },
+
+        contentType: 'application/json',
+
         data: JSON.stringify({
             score:submitscore,
             csrfmiddlewaretoken: csrftoken
