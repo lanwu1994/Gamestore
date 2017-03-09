@@ -9,9 +9,9 @@ window.addEventListener('message',function(e){
       $.ajax({
         type:"POST",
         url:window.location.href,
-        data: {score:submitscore},
+        data: JSON.stringify({score:submitscore}),
         success: function(data){console.log("Submit score success, sore is " +submitscore);}
-        
+
       });
 
     });
