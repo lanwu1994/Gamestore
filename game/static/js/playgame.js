@@ -5,7 +5,7 @@ window.addEventListener('message',function(e){
     document.getElementById('id_score').value=submitscore;
     console.log(submitscore);
 
-      console.log('ygu');
+      
 
     function getCookie(name) {
     var cookieValue = null;
@@ -55,6 +55,6 @@ window.addEventListener('message',function(e){
         }
 
       });
-      console.log('hsg');
+
 
 });
