@@ -40,7 +40,7 @@ window.addEventListener('message',function(e){
         type:"POST",
         url:window.location.href,
 
-        contentType: 'application/www-form-urlencoded',
+        contentType: 'application/x-www-form-urlencoded',
 
         data: JSON.stringify({
             score:submitscore,
