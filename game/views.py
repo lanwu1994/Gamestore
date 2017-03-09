@@ -88,9 +88,9 @@ def user_login(request):
                     message = "    ".join([
                         u'{0},Welcome to game store!'.format(inputUser),
                         u'Please click link to finish registration:',
-                        '/'.join(['https://gamestores.herokuapp.com', 'account/activate', token])
+                        '/'.join(['http://gamestores.herokuapp.com', 'account/activate', token])
                     ])
-                    errors.append('/'.join(['https://gamestores.herokuapp.com', 'account/activate', token]))
+                    errors.append('/'.join(['http://gamestores.herokuapp.com', 'account/activate', token]))
                     #with mail.get_connection() as connection:
                     #    mail.EmailMessage(
                     #        u'Registration Validation', message, None, [regiEmail],
@@ -115,7 +115,7 @@ def forget_password(request):
         message = "    ".join([
             u'Hi, {0}, You could retrieve your password here.'.format(user[0].user_name),
             u'Please click link to finish:',
-            '/'.join(['https://gamestores.herokuapp.com', 'account/password', token])
+            '/'.join(['http://newmysite1.herokuapp.com', 'account/password', token])
         ])
         with mail.get_connection() as connection:
             mail.EmailMessage(
@@ -218,7 +218,7 @@ def management(request,user_email):
             image = request.FILES['image']
             image.name = datetime.datetime.now().strftime("%d-%s")
         b = Game(game_name=inputGame, game_category=category,game_price=price,game_date=datetime.datetime.now().strftime("%Y-%m-%d"),
-                game_description=description,game_pic=new_image,game_path=new_path)
+                    game_description=description,game_pic=new_image,game_path=new_path)
 
         # with open('media/'+datetime.datetime.now().strftime("%d-%s"), 'wb') as f:
         #     f.write(data)
@@ -339,8 +339,8 @@ def play(request, userEmail,game_name):
                 max_score=int(item.score)
                 max_score_wrap=item
 
-    dis_score = request.POST.get('score', '')
-
+    # dis_score = request.POST.get('score', '')
+    dis_score = 100
     temp_score=''
     all_scores = Score.objects.filter(player__exact=user[0].user_id).filter(game__exact=game[0].game_id)
     if len(all_scores)!=0:
@@ -353,7 +353,7 @@ def play(request, userEmail,game_name):
             if dis_score>temp_score.score:
                 temp_score.score=dis_score
                 temp_score.save()
-    return render(request, 'playgame.html',{'user':user[0],'game':game[0],'max_score_wrap':max_score_wrap,'dis_score':dis_score,'yourscore':temp_score,'test':dis_score})
+    return render(request, 'playgame.html',{'user':user[0],'game':game[0],'max_score_wrap':max_score_wrap,'dis_score':dis_score,'yourscore':temp_score})
 
 def game_edit(request, userEmail,game_name):
     ue=userEmail.split('.com')[0]+'.com'
