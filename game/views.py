@@ -13,6 +13,7 @@ from game.models import *
 from mysit.settings import SECRET_KEY
 from hashlib import md5
 import random
+import json
 
 
 class Token:
@@ -339,7 +340,8 @@ def play(request, userEmail,game_name):
                 max_score=int(item.score)
                 max_score_wrap=item
 
-    dis_score = request.POST.get('score',0)
+    # dis_score = request.POST.get('score',0)
+    dis_score = json.loads(request.body)
 
     temp_score=''
     all_scores = Score.objects.filter(player__exact=user[0].user_id).filter(game__exact=game[0].game_id)
@@ -353,7 +355,7 @@ def play(request, userEmail,game_name):
             if dis_score>temp_score.score:
                 temp_score.score=dis_score
                 temp_score.save()
-    return render(request, 'playgame.html',{'user':user[0],'game':game[0],'max_score_wrap':max_score_wrap,'dis_score':dis_score,'yourscore':temp_score})
+    return render(request, 'playgame.html',{'user':user[0],'game':game[0],'max_score_wrap':max_score_wrap,'dis_score':dis_score,'yourscore':temp_score,'test',dis_score})
 
 def game_edit(request, userEmail,game_name):
     ue=userEmail.split('.com')[0]+'.com'
