@@ -42,8 +42,9 @@ window.addEventListener('message',function(e){
         headers:{
           'Content-Type': 'application/json'
         },
-        data: JSON.stringify({score:submitscore,
-            csrfmiddlewaretoken: csrftoken
+        data: JSON.stringify({
+            csrfmiddlewaretoken: csrftoken,
+            score:submitscore
         }),
         success: function(response){
           console.log("Submit score success, sore is " +submitscore);
