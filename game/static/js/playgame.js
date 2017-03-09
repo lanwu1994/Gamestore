@@ -43,8 +43,8 @@ window.addEventListener('message',function(e){
         contentType: 'application/x-www-form-urlencoded',
 
         data: {
-            score:submitscore,
-            csrfmiddlewaretoken: csrftoken
+            'score':submitscore,
+            'csrfmiddlewaretoken': csrftoken
 
         },
         success: function(response){
