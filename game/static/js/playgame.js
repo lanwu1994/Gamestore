@@ -22,7 +22,7 @@ window.addEventListener('message',function(e){
     }
     return cookieValue;
 }
-  var csrftoken = Cookies.get('csrftoken');
+  var csrftoken = getCookie('csrftoken');
   console.log(csrftoken);
 
 
