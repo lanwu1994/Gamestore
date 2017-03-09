@@ -6,6 +6,7 @@ window.addEventListener('message',function(e){
     console.log(submitscore);
 
     $("#play_form").submit(function(ev){
+      console.log('ygu');
       $.ajax({
         type:"POST",
         url:window.location.href,
@@ -16,6 +17,7 @@ window.addEventListener('message',function(e){
         error: function(response){
           console.log("error");
         }
+        console.log('hsg');
       });
 
     });
