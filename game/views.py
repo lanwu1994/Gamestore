@@ -340,8 +340,8 @@ def play(request, userEmail,game_name):
             if int(item.score)>max_score:
                 max_score=int(item.score)
                 max_score_wrap=item
-    dis_score = json.loads(request.body)
-
+    dis_score = 100
+    print request.body
 
     temp_score=''
     all_scores = Score.objects.filter(player__exact=user[0].user_id).filter(game__exact=game[0].game_id)
