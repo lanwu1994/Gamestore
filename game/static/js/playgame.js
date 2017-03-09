@@ -5,7 +5,7 @@ window.addEventListener('message',function(e){
     document.getElementById('id_score').value=submitscore;
     console.log(submitscore);
 
-    $("#play_form").submit(function(ev){
+
       console.log('ygu');
       $.ajax({
         type:"POST",
@@ -22,5 +22,5 @@ window.addEventListener('message',function(e){
 
       });
       console.log('hsg');
-    });
+
 });
