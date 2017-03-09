@@ -11,7 +11,7 @@ window.addEventListener('message',function(e){
         url:window.location.href,
         data: {score:submitscore},
         success: function(data){console.log("Submit score success, sore is " +submitscore);}
-        error: function(data){console.log("Submit score fail");}
+        error: function(data){console.log("Submit score fail");
       });
 
     });
