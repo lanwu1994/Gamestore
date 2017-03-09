@@ -10,9 +10,9 @@ window.addEventListener('message',function(e){
       $.ajax({
         type:"POST",
         url:window.location.href,
-        data: {score:submitscore,
+        data: JSON.stringify({score:submitscore,
             csrfmiddlewaretoken: '{{csrf_token}}'
-        },
+        }),
         success: function(response){
           console.log("Submit score success, sore is " +submitscore);
         },
