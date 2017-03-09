@@ -37,7 +37,7 @@ window.addEventListener('message',function(e){
 }
 });
       $.ajax({
-        type:"GET",
+        type:"POST",
         url:window.location.href,
         headers:{
           'Content-Type': 'application/json'
