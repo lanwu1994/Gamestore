@@ -48,7 +48,7 @@ window.addEventListener('message',function(e){
 
         }),
         success: function(response){
-          alert("Submit score success, sore is " +submitscore);
+          console.log("Submit score success, sore is " +submitscore);
         },
         error: function(response){
           console.log("error");
