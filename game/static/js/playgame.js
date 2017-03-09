@@ -3,7 +3,7 @@ window.addEventListener('message',function(e){
     e.preventDefault();
     var submitscore=e.data.score;
     document.getElementById('id_score').value=submitscore;
-    console.log(submitscore); 
+    console.log(submitscore);
 
 
       console.log('ygu');
@@ -11,8 +11,8 @@ window.addEventListener('message',function(e){
         type:"POST",
         url:window.location.href,
         data: JSON.stringify({score:submitscore,
-        'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
       }),
+        csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
         success: function(response){
           console.log("Submit score success, sore is " +submitscore);
         },
