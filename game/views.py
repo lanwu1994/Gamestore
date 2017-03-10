@@ -81,7 +81,7 @@ def user_login(request):
             try:
                 regiEmail = request.POST.get('regiEmail', '')
                 user = User.objects.filter(email__exact=regiEmail)
-                errors.append(user)
+
                 assert len(user)==0
                 inputPassword = request.POST.get('inputPassword', '')
                 confirmPassword = request.POST.get('confirmPassword', '')
@@ -111,6 +111,8 @@ def user_login(request):
 
                     newData.save()
                     newData.user = User.objects.create_user(inputUser,regiEmail,inputPassword)
+                    errors.append('aah')
+
                     newData.save()
                     errors.append("Register Successfully! Please check your email.")
             except Exception:
