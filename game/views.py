@@ -107,14 +107,15 @@ def user_login(request):
                     #        u'Registration Validation', message, None, [regiEmail],
                     #        connection=connection,
                     #    ).send()
-                    newData = UserProfile(user_category='2')
-
+                    temp_user = User.objects.create_user(inputUser,regiEmail,inputPassword)
+                    errors.append('fy')
+                    newData = UserProfile(user=tem_user)
+                    errors.append('hvh')
                     newData.save()
-                    errors.append('aah')
-                    newData.user = User.objects.create_user(inputUser,regiEmail,inputPassword)
 
 
-                    newData.save()
+
+        
                     errors.append("Register Successfully! Please check your email.")
             except Exception:
                 errors.append("Email address had been used!")
