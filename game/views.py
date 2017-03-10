@@ -81,6 +81,7 @@ def user_login(request):
             try:
                 regiEmail = request.POST.get('regiEmail', '')
                 user = User.objects.filter(email__exact=regiEmail)
+                errors.append(user)
                 assert len(user)==0
                 inputPassword = request.POST.get('inputPassword', '')
                 confirmPassword = request.POST.get('confirmPassword', '')
