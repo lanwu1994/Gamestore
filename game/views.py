@@ -110,8 +110,9 @@ def user_login(request):
                     newData = UserProfile(user_category='2')
 
                     newData.save()
-                    newData.user = User.objects.create_user(inputUser,regiEmail,inputPassword)
                     errors.append('aah')
+                    newData.user = User.objects.create_user(inputUser,regiEmail,inputPassword)
+
 
                     newData.save()
                     errors.append("Register Successfully! Please check your email.")
