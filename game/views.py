@@ -14,7 +14,7 @@ from mysit.settings import SECRET_KEY
 from hashlib import md5
 import random
 import json
-from django.contrib.auth import authticate
+from django.contrib.auth import authenticate
 
 class Token:
     def __init__(self,security_key):
