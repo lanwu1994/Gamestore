@@ -14,9 +14,9 @@
 				<h4 class="pull-right">${{game.game_price}}</h4>
 				<h4>{{game.game_name}}</h4>
 				{% if user in all_players  %}
-				<a href="/play/{{user.user_email}}{{user.user_password}}/{{game.game_name}}" class="btn btn-primary btn-sm pull-right" role="button">Play</a>
+				<a href="/play/{{game.game_name}}" class="btn btn-primary btn-sm pull-right" role="button">Play</a>
 				{% else %}
-				<a href="/pay/{{user.user_email}}{{user.user_password}}/{{game.game_name}}" class="btn btn-primary btn-sm pull-right" role="button">Buy</a>
+				<a href="/pay/{{game.game_name}}" class="btn btn-primary btn-sm pull-right" role="button">Buy</a>
 				{% endif %}
 				<p>{{game.game_description}}</p>
 			</div>

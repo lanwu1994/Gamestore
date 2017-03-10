@@ -45,7 +45,7 @@
     <div class="row">
 	{% for category in categories %}
 	<div class="col-md-12">
-	<h3><a id="category" href=/category/{{category}}/{{user.user_email}}{{user.user_password}}>{{category}}</a></h3>
+	<h3><a id="category" href=/category/{{category}}/>{{category}}</a></h3>
 	{% for game in games %}
 	{% if game.game_category == category  %}
 	{% load staticfiles %}
@@ -54,7 +54,7 @@
                 <img src="/static/pic/what.jpeg" alt="game image">
                 <div class="caption">
 					<h4 class="pull-right">{{game.game_price}}</h4>
-					<h4><a href="/gameInfo/{{user.user_email}}{{user.user_password}}/{{game.game_name}}">{{game.game_name}}</a></h4>
+					<h4><a href="/gameInfo/{{game.game_name}}">{{game.game_name}}</a></h4>
 					<p>{{game.game_description}}</p>
                 </div>
             </div>

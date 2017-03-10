@@ -27,7 +27,7 @@
 
 <h3>Change Password<h3>
 <span style="color: red">{{ mess2 }}</span>
-<form class="form-horizontal" role="form" action="/accountManager/{{user.user_email}}{{user.user_password}}/" method="post">{% csrf_token %}
+<form class="form-horizontal" role="form" action="/accountManager/" method="post">{% csrf_token %}
 	<div class="form-group">
 		<label for="inputPassword" class="col-sm-3 control-label">Password</label>
 		<div class="col-sm-9">
