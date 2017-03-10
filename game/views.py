@@ -15,6 +15,7 @@ from hashlib import md5
 import random
 import json
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
 
 class Token:
     def __init__(self,security_key):
