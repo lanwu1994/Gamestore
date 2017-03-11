@@ -113,10 +113,11 @@ def user_login(request):
                     temp_user = User.objects.create_user(inputUser,regiEmail,inputPassword)
                     temp_user.save()
                     temp_profile = UserProfile()
+                    temp_profile.save()
                     temp_user.userprofile = temp_profile
                     temp_user.save()
 
-                    
+
 
 
 
