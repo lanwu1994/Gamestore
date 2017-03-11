@@ -59,7 +59,7 @@ def user_login(request):
 
             if not len(re_user):
 
-                errors.append("User or Password is incorrect!")
+                errors.append("User  is incorrect!")
             else:
 
                 tem_user = re_user[0].userprofile
