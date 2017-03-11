@@ -292,7 +292,7 @@ def contact(request):
 
 @login_required
 def usergame(request):
-
+    
     tem_user = request.user
     profile = UserProfile.objects.filter(user__exact=tem_user)
     all_game = Game.objects.all()
