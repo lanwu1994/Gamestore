@@ -127,11 +127,10 @@ def user_login(request):
 
 
 def active_user(request, token):
-    try:
-        inputUser = token_confirm.confirm_validate_token(token)
-        
-    except:
-        return HttpResponse(u'Sorry, it is expired!')
+
+    inputUser = token_confirm.confirm_validate_token(token)
+
+
     try:
 
         tem_user = User.objects.filter(username__exact=inputUser)
