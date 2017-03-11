@@ -55,12 +55,12 @@ def user_login(request):
         if userEmail:
             userPw = request.POST.get('inputPassword', '')
 
-            re_user = request.user
-            tem_user = re_user.userprofile
-            if not re_user or not tem_user.user_valid :
+            re_user = User.objects.filter(email__exact=userEmail)
+            tem_user = re_user[0].userProfile
+            if not re_user[0] or not tem_user.user_valid :
                 errors.append("User or Password is incorrect!")
             else:
-                if re_user.password != userPw:
+                if re_user[0].password != userPw:
                     errors.append("User or Password is incorrect!")
 
                 else:
