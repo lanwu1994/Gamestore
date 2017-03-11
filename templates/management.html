@@ -13,7 +13,7 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#account" role="tab" data-toggle="tab">Account</a></li>
                     <li role="presentation"><a href="#usergame" role="tab" data-toggle="tab">User Game</a></li>
-					{%if user.user_category == '1' %}
+					{%if user.profile.user_category == '1' %}
               			<li role="presentation"><a href="#developergame" role="tab" data-toggle="tab">Developer Game</a></li>
 										<li role="presentation"><a href="#uploadgame" role="tab" data-toggle="tab">Upload Game</a></li>
 					{% endif %}
