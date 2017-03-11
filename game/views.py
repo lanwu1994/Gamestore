@@ -323,6 +323,7 @@ def active_user(request, token):
 
         tem_user = User.objects.filter(email__exact=email)
         profile = tem_user[0].userprofile
+        return HttpResponse(profile.user_category)
     except User.DoesNotExist:
         return HttpResponse(u'Sorry, user is not exist, please try again!')
     s = profile
