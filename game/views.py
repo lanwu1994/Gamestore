@@ -51,7 +51,7 @@ def user_login(request):
     errors = []
     if request.method == "POST":
         userEmail=request.POST.get('inputEmail', '')
-        inputUser = request.POST.get('inputUser', '')
+
         if userEmail:
             userPw = request.POST.get('inputPassword', '')
 
@@ -65,7 +65,7 @@ def user_login(request):
                 if not tem_user.user_valid :
                     errors.append("User does not exist!")
                 else:
-                    user = authenticate(username=inputUser,password=userPw)
+                    user = authenticate(email=userEmail,password=userPw)
                     if user is not None:
 
                         userInfo = tem_user
@@ -75,7 +75,7 @@ def user_login(request):
                         categories=set()
                         for game in games:
                             categories.add(game.game_category)
-                    return render_to_response('main.html', {'user': userInfo,'games':games,'categories':categories})
+                        return render_to_response('main.html', {'user': userInfo,'games':games,'categories':categories})
         elif inputUser:
             try:
                 regiEmail = request.POST.get('regiEmail', '')
