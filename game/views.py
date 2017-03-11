@@ -317,7 +317,7 @@ def gameInfo(request,game_name):
 def active_user(request, token):
     try:
         email = token_confirm.confirm_validate_token(token)
-        return HttpResponse(u'hh'+email)
+        return HttpResponse(u'hh'+token)
     except:
         return HttpResponse(u'Sorry, it is expired!')
     try:
