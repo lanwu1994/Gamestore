@@ -103,9 +103,9 @@ def user_login(request):
                     message = "    ".join([
                         u'{0},Welcome to game store!'.format(inputUser),
                         u'Please click link to finish registration:',
-                        '/'.join(['http://gamestores.herokuapp.com', 'activate', token])
+                        '/'.join(['http://gameplus.herokuapp.com', 'activate', token])
                     ])
-                    errors.append('/'.join(['http://gamestores.herokuapp.com', 'activate', token]))
+                    errors.append('/'.join(['http://gameplus.herokuapp.com', 'activate', token]))
                     #with mail.get_connection() as connection:
                     #    mail.EmailMessage(
                     #        u'Registration Validation', message, None, [regiEmail],
@@ -154,7 +154,7 @@ def forget_password(request):
         message = "    ".join([
             u'Hi, {0}, You could retrieve your password here.'.format(tem_user.username),
             u'Please click link to finish:',
-            '/'.join(['http://gamestores.herokuapp.com', 'account/password', token])
+            '/'.join(['http://gameplus.herokuapp.com', 'account/password', token])
         ])
         # with mail.get_connection() as connection:
         #     mail.EmailMessage(
@@ -366,8 +366,9 @@ def payment_success(request,status):
         checksum = m.hexdigest()
         real_checksum=request.GET['checksum']
         if checksum==real_checksum:
-            game[0].game_sale+=1
+            
             game[0].player.add(tem_user)
+            game[0].game_sale+=1
 
             game[0].save()
             return render(request,'paymentResponse.html',{'url_status':status,'response_url':response_url,'game':game[0],'user':tem_user})
