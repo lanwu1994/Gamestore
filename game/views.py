@@ -62,7 +62,7 @@ def user_login(request):
                 errors.append("User or Password is incorrect!")
             else:
 
-                tem_user = re_user[0].userProfile
+                tem_user = re_user[0].userprofile
                 if re_user[0].password != userPw or not tem_user.user_valid :
                     errors.append("User or Password is incorrect!")
 
