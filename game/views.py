@@ -116,6 +116,9 @@ def user_login(request):
                     temp_profile = UserProfile(user=temp_user)
                     temp_profile.save()
 
+                    email = token_confirm.confirm_validate_token(token)
+                    errors.append(email)
+
 
 
 
@@ -127,6 +130,25 @@ def user_login(request):
             except Exception:
                 errors.append("Email address had been used!")
     return render(request,'registration/login.html', {'errors': errors})
+
+
+def active_user(request, token):
+    try:
+        email = token_confirm.confirm_validate_token(token)
+
+    except:
+        return HttpResponse(u'Sorry, it is expired!')
+    try:
+
+        tem_user = User.objects.filter(email__exact=email)
+        profile = tem_user[0].userprofile
+        return HttpResponse(u'hh'+len(profile))
+    except User.DoesNotExist:
+        return HttpResponse(u'Sorry, user is not exist, please try again!')
+    s = profile
+    s.user_valid = True
+    s.save()
+    return redirect("login/")
 
 
 def forget_password(request):
@@ -314,23 +336,7 @@ def gameInfo(request,game_name):
 #    return render(request, 'index.html')
 
 
-def active_user(request, token):
-    try:
-        email = token_confirm.confirm_validate_token(token)
 
-    except:
-        return HttpResponse(u'Sorry, it is expired!')
-    try:
-
-        tem_user = User.objects.filter(email__exact=email)
-        profile = tem_user[0].userprofile
-        return HttpResponse(u'hh'+len(profile))
-    except User.DoesNotExist:
-        return HttpResponse(u'Sorry, user is not exist, please try again!')
-    s = profile
-    s.user_valid = True
-    s.save()
-    return redirect("login/")
 
 @login_required
 def payment(request,game_name):
