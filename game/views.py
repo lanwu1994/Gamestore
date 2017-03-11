@@ -51,9 +51,10 @@ def user_login(request):
 
     errors = []
     if request.method == "POST":
-        userEmail=request.POST.get('inputEmail', '')
+        inputuser=request.POST.get('inputuser','')
+        # userEmail=request.POST.get('inputEmail', '')
         inputUser=request.POST.get('inputUser','')
-        if userEmail:
+        if inputuser:
             userPw = request.POST.get('inputPassword', '')
 
             re_user = User.objects.filter(email__exact=userEmail)
@@ -67,8 +68,9 @@ def user_login(request):
                     errors.append("User does not exist!")
                 else:
 
-                    user = re_user[0]
-                    if user.check_password(userPw):
+                    user = authenticate(username=inputuser,password=userPw)
+
+                    if  user is not None:
 
 
                     #response=auth_views.login(request,'main.html',extra_context={'userInfo': userInfo})
