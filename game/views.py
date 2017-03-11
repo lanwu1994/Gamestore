@@ -76,6 +76,7 @@ def user_login(request):
                         categories=set()
                         for game in games:
                             categories.add(game.game_category)
+                        auth.login(request,user)
                         return render_to_response('main.html', {'user': user,'games':games,'categories':categories})
         elif inputUser:
             try:
