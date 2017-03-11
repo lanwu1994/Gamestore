@@ -294,13 +294,13 @@ def contact(request):
 def usergame(request):
 
     tem_user = request.user
-    profile = UserProfile.objects.filter(user__exact=tem_user)
+
     all_game = Game.objects.all()
     games=[]
     for item in all_game:
-        if profile[0] in item.player.all():
+        if tem_user in item.player.all():
             games.append(item)
-    return render(request,'userGame.html',{'user':profile[0],'games':games})
+    return render(request,'userGame.html',{'user':tem_user,'games':games})
 
 @login_required
 def gameInfo(request,game_name):
