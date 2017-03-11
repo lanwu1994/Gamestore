@@ -65,18 +65,18 @@ def user_login(request):
                 if not tem_user.user_valid :
                     errors.append("User does not exist!")
                 else:
-                    
+
                     user = re_user[0]
                     if user.check_password(userPw):
 
-                        userInfo = tem_user
+
                     #response=auth_views.login(request,'main.html',extra_context={'userInfo': userInfo})
 
                         games=Game.objects.all()
                         categories=set()
                         for game in games:
                             categories.add(game.game_category)
-                        return render_to_response('main.html', {'user': userInfo,'games':games,'categories':categories})
+                        return render_to_response('main.html', {'user': user,'games':games,'categories':categories})
         elif inputUser:
             try:
                 regiEmail = request.POST.get('regiEmail', '')
