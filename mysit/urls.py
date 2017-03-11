@@ -23,13 +23,14 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^accounts/',include('django.contrib.auth.urls')),
     url(r'^$',user_login),
     url(r'^login/$',user_login),
     url(r'^logo/$', logo_login),
     url(r'^login/forgetpassword/$',forget_password),
     url(r'^login/resetpassword/(.*)/$',set_new_password),
     url(r'^category/(.*)/$',category),
-    url(r'^accounts/login/(.*)/activate/(.*)/$',active_user),
+    url(r'^activate/(.*)/$',active_user),
     url(r'^account/password/$',set_new_password),
     url(r'^accountManager/$',management),
     url(r'^search/$',search_game),
