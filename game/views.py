@@ -194,13 +194,13 @@ def category(request,cate):
 @login_required
 def management(request):
     tem_user = request.user
-    profile = UserProfile.objects.filter(user__exact=tem_user)
+
     all_game = Game.objects.all()
     games=[]
     for item in all_game:
         if tem_user in item.player.all():
             games.append(item)
-    dev_game_name=profile[0].user_dev_games.split('/')
+    dev_game_name=tem_user.user_dev_games.split('/')
     dev_game_name=[x for x in dev_game_name if x!='']
     dev_games=[]
     for item in dev_game_name:
@@ -216,28 +216,28 @@ def management(request):
     mess2 = ''
     if inputUser != '':
         if role == 'on':
-            s=profile[0]
+            s=tem_user.userprofile
             s.user_category = '1'
             s.save()
         else:
-            s = profile[0]
+            s = tem_user.userprofile
             s.user_category = '2'
             s.save()
     if inputUser != '':
         if inputUser.strip():
             mess1 = 'User name has been changed successfully!'
-            s = profile[0]
+            s = tem_user
 
-            s.user.username = inputUser
+            s.username = inputUser
             s.save()
         else:
             mess1 = 'User name cannot be space!'
     if inputPassword != '':
         if inputPassword == confirmPassword:
             if inputPassword.strip():
-                s = profile[0]
+                s = tem_user
 
-                s.user.password = inputPassword
+                s.password = inputPassword
                 s.save()
                 mess2 = 'Password has changed successfully!'
             else:
@@ -263,7 +263,7 @@ def management(request):
         # with open('media/'+datetime.datetime.now().strftime("%d-%s"), 'wb') as f:
         #     f.write(data)
         b.save()
-        s=profile[0]
+        s=tem_user.userprofile
         s.user_dev_games += (inputGame + '/')
         s.save()
         return HttpResponseRedirect(request.META['HTTP_REFERER'])
@@ -274,15 +274,15 @@ def management(request):
         if len(temp):
             s=temp[0]
             s.delete()
-            allgames=profile[0].user_dev_games.split('/')
+            allgames=tem_user.userprofile.user_dev_games.split('/')
             allgames = [x for x in allgames if x != '']
             allgames.pop()
             res_games='/'.join(allgames)+'/'
-            u=profile[0]
+            u=tem_user.userprofile
             u.user_dev_games=res_games
             u.save()
             return HttpResponseRedirect(request.META['HTTP_REFERER'])
-    return render(request, 'management.html', {'user': profile[0],'games':games,'categories':categories,
+    return render(request, 'management.html', {'user': tem_user,'games':games,'categories':categories,
                                                'dev_games':dev_games,'mess1':mess1,'mess2':mess2})
 
 @login_required
