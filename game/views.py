@@ -116,8 +116,7 @@ def user_login(request):
                     temp_profile = UserProfile(user=temp_user)
                     temp_profile.save()
 
-                    email = token_confirm.confirm_validate_token(token)
-                    errors.append(email)
+
 
 
 
@@ -129,13 +128,13 @@ def user_login(request):
 
 def active_user(request, token):
     try:
-        email = token_confirm.confirm_validate_token(token)
+        inputUser = token_confirm.confirm_validate_token(token)
 
     except:
         return HttpResponse(u'Sorry, it is expired!')
     try:
 
-        tem_user = User.objects.filter(email__exact=email)
+        tem_user = User.objects.filter(username__exact=inputUser)
         profile = tem_user[0].userprofile
         return HttpResponse(u'hh'+len(profile))
     except User.DoesNotExist:
