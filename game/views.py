@@ -294,7 +294,7 @@ def contact(request):
     return render(request,'contact.html',{'user':tem_user})
 
 
-
+@login_required
 def usergame(request):
 
     tem_user = request.user
