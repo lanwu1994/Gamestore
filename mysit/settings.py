@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'game',
     'django_social_share',
     'corsheaders',
-    '
+    
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -54,7 +54,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    
+
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
