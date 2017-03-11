@@ -321,7 +321,7 @@ def active_user(request, token):
     s = profile
     s.user_valid = True
     s.save()
-    return redirect("/login/")
+    return redirect("login/")
 
 @login_required
 def payment(request,game_name):
