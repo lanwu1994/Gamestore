@@ -108,7 +108,7 @@ def user_login(request):
                     #        connection=connection,
                     #    ).send()
                     temp_user = User.objects.create_user(inputUser,regiEmail,inputPassword)
-                    tem_user.save()
+                    temp_user.save()
 
                     errors.append('hvh')
 
