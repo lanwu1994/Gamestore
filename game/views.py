@@ -337,7 +337,7 @@ def payment(request,game_name):
     password = request.POST.get('password', '')
     mess=''
     our_sid='chinawsd2017'
-    our_pid=userEmail+game_name+'.com'+datetime.datetime.now().strftime("%d-%s")
+    our_pid=game_name+'.com'+datetime.datetime.now().strftime("%d-%s")
     amount=game[0].game_price
     secret_key='27bf3942470d953181b397e8a92a8b42'
     checksumstr="pid={}&sid={}&amount={}&token={}".format(our_pid, our_sid, amount, secret_key)
@@ -366,7 +366,7 @@ def payment_success(request,status):
         checksum = m.hexdigest()
         real_checksum=request.GET['checksum']
         if checksum==real_checksum:
-            
+
             game[0].player.add(tem_user)
             game[0].game_sale+=1
 
@@ -380,7 +380,7 @@ def payment_success(request,status):
 @login_required
 def play(request,game_name):
     tem_user = request.user
-    profile = UserProfile.objects.filter(user=tem_user)
+    profile = tem_user.userprofile
 
     game=Game.objects.filter(game_name__exact=game_name)
 
