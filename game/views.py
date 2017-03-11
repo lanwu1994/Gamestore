@@ -68,10 +68,10 @@ def user_login(request):
 
 
                 else:
-                    user = authenticate(username=inputUser,password=inputPassword)
+                    user = authenticate(username=inputUser,password=userPw)
                     if user is not None:
 
-                        
+
 
                         userInfo = tem_user
                     #response=auth_views.login(request,'main.html',extra_context={'userInfo': userInfo})
