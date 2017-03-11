@@ -56,7 +56,7 @@ def user_login(request):
             userPw = request.POST.get('inputPassword', '')
 
             re_user = request.user
-            tem_user = re_user.userProfile
+            tem_user = re_user.userprofile
             if not re_user or not tem_user.user_valid :
                 errors.append("User or Password is incorrect!")
             else:
