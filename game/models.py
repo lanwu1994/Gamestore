@@ -26,7 +26,7 @@ class Game(models.Model):
     game_sale=models.IntegerField(max_length=10,default=0)
     game_pic=models.ImageField(storage=fs,blank=True,null=True)
     game_path=models.CharField(max_length=150,blank=True,null=True)
-    player=models.ManyToManyField(UserProfile,blank=True,null=True)
+    player=models.ManyToManyField(User,blank=True,null=True)
     #developer=models.ForeignKey(User,blank=True,null=True)
 
 
@@ -35,5 +35,5 @@ class Score(models.Model):
     score_id=models.AutoField(primary_key=True)
     score=models.CharField(max_length=255)
     save_score=models.CharField(max_length=255,blank=True,null=True)
-    player=models.ForeignKey(UserProfile)
+    player=models.ForeignKey(User)
     game=models.ForeignKey(Game)
