@@ -317,14 +317,14 @@ def gameInfo(request,game_name):
 def active_user(request, token):
     try:
         email = token_confirm.confirm_validate_token(token)
-        return HttpResponse(u'hh'+token)
+
     except:
         return HttpResponse(u'Sorry, it is expired!')
     try:
 
         tem_user = User.objects.filter(email__exact=email)
         profile = tem_user[0].userprofile
-
+        return HttpResponse(u'hh'+len(profile))
     except User.DoesNotExist:
         return HttpResponse(u'Sorry, user is not exist, please try again!')
     s = profile
@@ -334,7 +334,7 @@ def active_user(request, token):
 
 @login_required
 def payment(request,game_name):
-    tem_user = request.User
+    tem_user = request.user
     userEmail = tem_user.email
     game=Game.objects.filter(game_name__exact=game_name)
     password = request.POST.get('password', '')
@@ -355,7 +355,7 @@ def payment_success(request,status):
     user_game = request.GET['pid']
     game_name = user_game.split('.com')[1]
 
-    tem_user = request.User
+    tem_user = request.user
 
     game = Game.objects.filter(game_name__exact=game_name)
 
@@ -380,7 +380,7 @@ def payment_success(request,status):
 
 @login_required
 def play(request,game_name):
-    tem_user = request.User
+    tem_user = request.user
     profile = UserProfile.objects.filter(user=tem_user)
 
     game=Game.objects.filter(game_name__exact=game_name)
@@ -414,7 +414,7 @@ def play(request,game_name):
 
 @login_required
 def game_edit(request,game_name):
-    tem_user=request.User
+    tem_user=request.user
 
     game=Game.objects.filter(game_name__exact=game_name)
 
@@ -445,7 +445,7 @@ def game_edit(request,game_name):
 @login_required
 def search_game(request):
 
-    tem_user=request.User
+    tem_user=request.user
     #game=Game.objects.filter(game_name__exact=game_name)
 
     search_words = request.GET.get('search_words', 'nono')
