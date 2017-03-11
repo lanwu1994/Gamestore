@@ -11,9 +11,9 @@
 		<label for="changePermission" class="col-sm-3 control-label">Role</label>
 		<div class="col-sm-9">
 			<label class="checkbox-inline"><input type="checkbox" checked="checked" disabled=""/>Player</label>
-			{%if user.user_category == '1' %}
+			{%if user.userprofile.user_category == '1' %}
 			<label class="checkbox-inline"><input type="checkbox" checked="checked" name="changePermission" />Developer</label>
-			{%elif user.user_category == '2' %}
+			{%elif user.userprofile.user_category == '2' %}
 			<label class="checkbox-inline"><input type="checkbox" checked="" name="changePermission" />Developer</label>
 			{% endif %}
 		</div>
