@@ -200,7 +200,7 @@ def management(request):
     for item in all_game:
         if tem_user in item.player.all():
             games.append(item)
-    dev_game_name=tem_user.uerprofile.user_dev_games.split('/')
+    dev_game_name=tem_user.userprofile.user_dev_games.split('/')
     dev_game_name=[x for x in dev_game_name if x!='']
     dev_games=[]
     for item in dev_game_name:
