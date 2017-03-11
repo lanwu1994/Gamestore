@@ -65,7 +65,7 @@ def user_login(request):
                 tem_user = re_user[0].userprofile
                 if re_user[0].password != userPw or not tem_user.user_valid :
                     errors.append("User or Password is incorrect!")
-                    errors.append(tem_user.user_valid)
+                    errors.append(re_user[0].password)
 
                 else:
                     user = authenticate(username=inputUser,password=inputPassword)
