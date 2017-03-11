@@ -136,7 +136,6 @@ def active_user(request, token):
 
         tem_user = User.objects.filter(username__exact=inputUser)
         profile = tem_user[0].userprofile
-        return HttpResponse(u'hh'+len(profile))
     except User.DoesNotExist:
         return HttpResponse(u'Sorry, user is not exist, please try again!')
     s = profile
