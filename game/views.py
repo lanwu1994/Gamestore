@@ -59,19 +59,19 @@ def user_login(request):
 
             if not len(re_user):
 
-                errors.append("User  is incorrect!")
+                errors.append("User does not exist!")
             else:
 
                 tem_user = re_user[0].userprofile
-                if re_user[0].password != userPw or not tem_user.user_valid :
-                    errors.append("User or Password is incorrect!")
-                    errors.append(re_user[0].password)
+                if not tem_user.user_valid :
+                    errors.append("User does not exist!")
+
 
                 else:
                     user = authenticate(username=inputUser,password=inputPassword)
                     if user is not None:
-                        errors.append("User does not exist!")
-                    else:
+
+                        
 
                         userInfo = tem_user
                     #response=auth_views.login(request,'main.html',extra_context={'userInfo': userInfo})
