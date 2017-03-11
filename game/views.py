@@ -313,7 +313,7 @@ def gameInfo(request,game_name):
 #def after_user_logged_in(request):
 #    return render(request, 'index.html')
 
-@login_required
+
 def active_user(request, token):
     try:
         email = token_confirm.confirm_validate_token(token)
