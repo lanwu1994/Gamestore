@@ -57,7 +57,7 @@ def user_login(request):
         if inputuser:
             userPw = request.POST.get('inputPassword', '')
 
-            re_user = User.objects.filter(email__exact=userEmail)
+            re_user = User.objects.filter(username__exact=inputuser)
 
             if not len(re_user):
 
