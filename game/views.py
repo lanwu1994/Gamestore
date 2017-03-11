@@ -17,6 +17,7 @@ import json
 from django.contrib.auth import authenticate
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+import datetime
 
 class Token:
     def __init__(self,security_key):
@@ -36,7 +37,7 @@ token_confirm = Token(SECRET_KEY)
 @login_required
 def logo_login(request):
 
-    user0=request.User
+    user0=request.user
     if user0.password!=ps:
         return render(request,'index.html')
     else:
@@ -207,8 +208,7 @@ def management(request):
         agame = Game.objects.filter(game_name__exact=item)
         dev_games.append(agame[0])
     categories=['Action','Dice','Sports','Music','Others']
-    if tem_user.password!=ps:
-        return render(request,'index.html')
+    
     inputUser = request.POST.get('inputUser', '')
     inputPassword = request.POST.get('inputPassword', '')
     confirmPassword = request.POST.get('confirmPassword', '')
