@@ -56,8 +56,8 @@ def user_login(request):
             userPw = request.POST.get('inputPassword', '')
 
             re_user = request.User
-            tem_user = UserProfile.objects.filter(user__exact=re_user)
-            if not re_user or not tem_user[0].user_valid :
+            tem_user = re_user.userProfile
+            if not re_user or not tem_user.user_valid :
                 errors.append("User or Password is incorrect!")
             else:
                 if re_user.password != userPw:
@@ -315,10 +315,10 @@ def active_user(request, token):
     try:
 
         tem_user = User.objects.filter(email__exact=email)
-        profile = UserProfile.objects.filter(user__exact=tem_user[0])
+        profile = tem_user[0].userProfile
     except User.DoesNotExist:
         return HttpResponse(u'Sorry, user is not exist, please try again!')
-    s = profile[0]
+    s = profile
     s.user_valid = True
     s.save()
     return redirect("/login/")
