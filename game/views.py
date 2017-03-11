@@ -99,7 +99,7 @@ def user_login(request):
                     errors.append("Fail. You refuse to accept agreement.")
                 else:
 
-                    token = token_confirm.generate_validate_token(userEmail)
+                    token = token_confirm.generate_validate_token(inputUser)
                     message = "    ".join([
                         u'{0},Welcome to game store!'.format(inputUser),
                         u'Please click link to finish registration:',
@@ -118,11 +118,6 @@ def user_login(request):
 
                     email = token_confirm.confirm_validate_token(token)
                     errors.append(email)
-
-
-
-
-
 
 
 
