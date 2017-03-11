@@ -108,14 +108,14 @@ def user_login(request):
                     #        connection=connection,
                     #    ).send()
                     temp_user = User.objects.create_user(inputUser,regiEmail,inputPassword)
-                    errors.append('fy')
-                    newData = UserProfile(user=tem_user)
+                    tem_user.save()
+
                     errors.append('hvh')
-                    newData.save()
 
 
 
-        
+
+
                     errors.append("Register Successfully! Please check your email.")
             except Exception:
                 errors.append("Email address had been used!")
