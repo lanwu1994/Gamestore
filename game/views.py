@@ -119,7 +119,7 @@ def user_login(request):
                     errors.append("Register Successfully! Please check your email.")
             except Exception:
                 errors.append("Email address had been used!")
-    return render(request,'index.html', {'errors': errors})
+    return render(request,'registration/login.html', {'errors': errors})
 
 
 def forget_password(request):
