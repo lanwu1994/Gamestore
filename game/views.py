@@ -129,7 +129,7 @@ def user_login(request):
 def active_user(request, token):
     try:
         inputUser = token_confirm.confirm_validate_token(token)
-
+        return HttpResponse(u'Sorry'+inputUser)
     except:
         return HttpResponse(u'Sorry, it is expired!')
     try:
