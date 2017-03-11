@@ -179,7 +179,7 @@ def set_new_password(request,emailToken):
 @login_required
 def category(request,cate):
 
-    tem_user = request.User
+    tem_user = request.user
     all_game = Game.objects.all()
     games=[]
     for item in all_game:
@@ -189,7 +189,7 @@ def category(request,cate):
 
 @login_required
 def management(request):
-    tem_user = request.User
+    tem_user = request.user
     profile = UserProfile.objects.filter(user__exact=tem_user)
     all_game = Game.objects.all()
     games=[]
@@ -285,7 +285,7 @@ def management(request):
 @login_required
 def contact(request):
 
-    tem_user = request.User
+    tem_user = request.user
 
     return render(request,'contact.html',{'user':tem_user})
 
@@ -293,7 +293,7 @@ def contact(request):
 @login_required
 def usergame(request):
 
-    tem_user = request.User
+    tem_user = request.user
     profile = UserProfile.objects.filter(user__exact=tem_user)
     all_game = Game.objects.all()
     games=[]
@@ -304,7 +304,7 @@ def usergame(request):
 
 @login_required
 def gameInfo(request,game_name):
-    tem_user = request.User
+    tem_user = request.user
 
 
     game = Game.objects.filter(game_name__exact=game_name)
