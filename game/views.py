@@ -51,7 +51,7 @@ def user_login(request):
     errors = []
     if request.method == "POST":
         userEmail=request.POST.get('inputEmail', '')
-
+        inputUser=request.POST.get('inputUser','')
         if userEmail:
             userPw = request.POST.get('inputPassword', '')
 
@@ -292,7 +292,7 @@ def contact(request):
 
 @login_required
 def usergame(request):
-    
+
     tem_user = request.user
     profile = UserProfile.objects.filter(user__exact=tem_user)
     all_game = Game.objects.all()
