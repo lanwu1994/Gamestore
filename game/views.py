@@ -127,10 +127,10 @@ def user_login(request):
 
 
 def active_user(request, token):
-
-    inputUser = token_confirm.confirm_validate_token(token)
-
-
+    try:
+        inputUser = token_confirm.confirm_validate_token(token)
+    except:
+        return HttpResponse(u'Sorry, it is expired!')
     try:
 
         tem_user = User.objects.filter(username__exact=inputUser)
@@ -140,7 +140,7 @@ def active_user(request, token):
     s = profile
     s.user_valid = True
     s.save()
-    return redirect("login/")
+    return redirect("/login/")
 
 
 def forget_password(request):
