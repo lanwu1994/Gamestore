@@ -99,9 +99,9 @@ def user_login(request):
                     message = "    ".join([
                         u'{0},Welcome to game store!'.format(inputUser),
                         u'Please click link to finish registration:',
-                        '/'.join(['http://gamestores.herokuapp.com', 'account/activate', token])
+                        '/'.join(['http://gamestores.herokuapp.com', 'activate', token])
                     ])
-                    errors.append('/'.join(['http://gamestores.herokuapp.com', 'account/activate', token]))
+                    errors.append('/'.join(['http://gamestores.herokuapp.com', 'activate', token]))
                     #with mail.get_connection() as connection:
                     #    mail.EmailMessage(
                     #        u'Registration Validation', message, None, [regiEmail],

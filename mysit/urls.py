@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^login/forgetpassword/$',forget_password),
     url(r'^login/resetpassword/(.*)/$',set_new_password),
     url(r'^category/(.*)/$',category),
-    url(r'^account/activate/(.*)/$',active_user),
+    url(r'^accounts/login/(.*)/activate/(.*)/$',active_user),
     url(r'^account/password/$',set_new_password),
     url(r'^accountManager/$',management),
     url(r'^search/$',search_game),
