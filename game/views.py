@@ -59,19 +59,14 @@ def user_login(request):
 
             if not len(re_user):
 
-                errors.append("User does not exist!")
+                errors.append("User does not exist")
             else:
-
                 tem_user = re_user[0].userprofile
                 if not tem_user.user_valid :
                     errors.append("User does not exist!")
-
-
                 else:
                     user = authenticate(username=inputUser,password=userPw)
                     if user is not None:
-
-
 
                         userInfo = tem_user
                     #response=auth_views.login(request,'main.html',extra_context={'userInfo': userInfo})
@@ -80,7 +75,7 @@ def user_login(request):
                         categories=set()
                         for game in games:
                             categories.add(game.game_category)
-                        return render_to_response('main.html', {'user': userInfo,'games':games,'categories':categories})
+                    return render_to_response('main.html', {'user': userInfo,'games':games,'categories':categories})
         elif inputUser:
             try:
                 regiEmail = request.POST.get('regiEmail', '')
