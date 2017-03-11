@@ -38,14 +38,13 @@ token_confirm = Token(SECRET_KEY)
 def logo_login(request):
 
     user0=request.user
-    if user0.password!=ps:
-        return render(request,'index.html')
-    else:
-        games = Game.objects.all()
-        categories = set()
-        for game in games:
-            categories.add(game.game_category)
-        return render_to_response('main.html', {'user': user0,'games':games,'categories':categories})
+
+
+    games = Game.objects.all()
+    categories = set()
+    for game in games:
+        categories.add(game.game_category)
+    return render_to_response('main.html', {'user': user0,'games':games,'categories':categories})
 
 
 def user_login(request):
@@ -208,7 +207,7 @@ def management(request):
         agame = Game.objects.filter(game_name__exact=item)
         dev_games.append(agame[0])
     categories=['Action','Dice','Sports','Music','Others']
-    
+
     inputUser = request.POST.get('inputUser', '')
     inputPassword = request.POST.get('inputPassword', '')
     confirmPassword = request.POST.get('confirmPassword', '')
