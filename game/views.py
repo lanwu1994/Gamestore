@@ -65,8 +65,9 @@ def user_login(request):
                 if not tem_user.user_valid :
                     errors.append("User does not exist!")
                 else:
-                    user = authenticate(email=userEmail,password=userPw)
-                    if user is not None:
+                    
+                    user = re_user[0]
+                    if user.check_password(userPw):
 
                         userInfo = tem_user
                     #response=auth_views.login(request,'main.html',extra_context={'userInfo': userInfo})
