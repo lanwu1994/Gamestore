@@ -367,8 +367,8 @@ def payment_success(request,status):
         real_checksum=request.GET['checksum']
         if checksum==real_checksum:
             game[0].game_sale+=1
-            game[0].player.add(tem_user.id)
-            
+            game[0].player.all().add(tem_user)
+
             game[0].save()
             return render(request,'paymentResponse.html',{'url_status':status,'response_url':response_url,'game':game[0],'user':tem_user})
     else:
