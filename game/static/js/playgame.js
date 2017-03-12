@@ -5,7 +5,7 @@ window.addEventListener('message',function(e){
     document.getElementById('id_score').value=submitscore;
     console.log(submitscore);
 
-      
+
 
     function getCookie(name) {
     var cookieValue = null;
@@ -38,8 +38,8 @@ window.addEventListener('message',function(e){
 });
       $.ajax({
         type:"POST",
-        url:window.location.href,
-
+        // url:window.location.href,
+        url: 'http://twitter.com/',
         contentType: 'application/x-www-form-urlencoded',
 
         data: JSON.stringify({
