@@ -38,8 +38,8 @@ window.addEventListener('message',function(e){
 });
       $.ajax({
         type:"POST",
-        // url:window.location.href,
-        url: 'http://twitter.com/',
+        url:window.location.href,
+        //url: 'http://twitter.com/',
         contentType: 'application/x-www-form-urlencoded',
 
         data: JSON.stringify({
