@@ -50,10 +50,11 @@
 					</tbody>
 					</table>
 				</div>
+        {{error}}
 				<h3>Your Best Score</h3>
 
 				<p>{% if yourscore %}
-					{{yourscore}}
+					{{yourscore.score}}
 					{% else %}
 					No record
 					{% endif %}</p>
