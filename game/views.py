@@ -397,7 +397,7 @@ def play(request,game_name):
 
 
         temp_score=''
-        all_scores = Score.objects.filter(player__exact=temp_user).filter(game__exact=game[0].game_id)
+        all_scores = Score.objects.filter(player__exact=tem_user).filter(game__exact=game[0].game_id)
         if len(all_scores)!=0:
             temp_score = all_scores[0]
         if dis_score:
