@@ -383,7 +383,7 @@ def play(request,game_name):
 
     game=Game.objects.filter(game_name__exact=game_name)
 
-    if tem_user in game[0].player:#entry
+    if  Game.objects.filter(User__username__contains=game[0].player):           #entry
 
         max_score_wrap=''
         if len(Score.objects.filter(game_id__exact=game[0].game_id))!=0:
