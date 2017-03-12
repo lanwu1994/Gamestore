@@ -379,7 +379,10 @@ def payment_success(request,status):
 
 @login_required
 def play(request,game_name):
+
     if request.method == "POST" and request.is_ajax:
+        error=[]
+        error.append(request.POST)
         tem_user = request.user
 
         game=Game.objects.filter(game_name__exact=game_name)
@@ -409,7 +412,7 @@ def play(request,game_name):
                     if dis_score>temp_score.score:
                         temp_score.score=dis_score
                         temp_score.save()
-            return render(request, 'playgame.html',{'user':tem_user,'game':game[0],'max_score_wrap':max_score_wrap,'dis_score':dis_score,'yourscore':temp_score})
+            return render(request, 'playgame.html',{'user':tem_user,'game':game[0],'max_score_wrap':max_score_wrap,'dis_score':dis_score,'yourscore':error})
         else:
             return render_to_response('main.html', {'user': tem_user})
     else:
