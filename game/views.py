@@ -350,7 +350,7 @@ def payment(request,game_name):
 @login_required
 def payment_success(request,status):
     user_game = request.GET['pid']
-    game_name = user_game.split('.com')[1]
+    game_name = user_game.split('.com')[0]
 
     tem_user = request.user
 
