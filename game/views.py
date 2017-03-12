@@ -413,7 +413,19 @@ def play(request,game_name):
         else:
             return render_to_response('main.html', {'user': tem_user})
     else:
-        return HttpResponse("")
+        tem_user = request.user
+        game=Game.objects.filter(game_name__exact=game_name)
+        max_score_wrap=''
+        if len(Score.objects.filter(game_id__exact=game[0].game_id))!=0:
+            max_score=-1
+            for item in Score.objects.filter(game_id__exact=game[0].game_id):
+
+                if int(item.score)>max_score:
+                    max_score=int(item.score)
+                    max_score_wrap=item
+        return render(request, 'playgame.html',{'user':tem_user,'game':game[0],'max_score_wrap':max_score_wrap})
+
+
 @login_required
 def game_edit(request,game_name):
     tem_user=request.user
