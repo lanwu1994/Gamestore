@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h3>My Game</a></h3>
-			
+
 {% for game in games %}
 <div class="col-sm-4 col-lg-4 col-md-4">
 	<div class="thumbnail">
@@ -16,7 +16,7 @@
 		<div class="caption">
 			<h4 class="pull-right">{{game.game_price}}</h4>
 			<!-- Click the name of games will link to the page that play this game -->
-			<h4><a href="/gameInfo/{{user.user_email}}{{user.user_password}}/{{game.game_name}}">{{game.game_name}}</a></h4>
+			<h4><a href="/gameInfo/{{game.game_name}}">{{game.game_name}}</a></h4>
 			<p>{{game.game_description}}</p>
 		</div>
 	</div>
