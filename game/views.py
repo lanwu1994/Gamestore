@@ -380,11 +380,10 @@ def payment_success(request,status):
 @login_required
 def play(request,game_name):
     tem_user = request.user
-    profile = tem_user.userprofile
 
     game=Game.objects.filter(game_name__exact=game_name)
 
-    if len(game.objects.filter(player__contains=profile[0])):#entry
+    if len(game.objects.filter(player__contains=tem_user):#entry
 
         max_score_wrap=''
         if len(Score.objects.filter(game_id__exact=game[0].game_id))!=0:
@@ -398,18 +397,18 @@ def play(request,game_name):
 
 
         temp_score=''
-        all_scores = Score.objects.filter(player__exact=profile[0]).filter(game__exact=game[0].game_id)
+        all_scores = Score.objects.filter(player__exact=tem_user).filter(game__exact=game[0].game_id)
         if len(all_scores)!=0:
             temp_score = all_scores[0]
         if dis_score:
             if len(all_scores)==0:
-                s=Score(score=dis_score,player=profile[0],game=game[0])
+                s=Score(score=dis_score,player=tem_user,game=game[0])
                 s.save()
             else:
                 if dis_score>temp_score.score:
                     temp_score.score=dis_score
                     temp_score.save()
-        return render(request, 'playgame.html',{'user':profile[0],'game':game[0],'max_score_wrap':max_score_wrap,'dis_score':dis_score,'yourscore':temp_score})
+        return render(request, 'playgame.html',{'user':tem_user,'game':game[0],'max_score_wrap':max_score_wrap,'dis_score':dis_score,'yourscore':temp_score})
 
 @login_required
 def game_edit(request,game_name):
