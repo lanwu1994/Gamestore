@@ -379,38 +379,41 @@ def payment_success(request,status):
 
 @login_required
 def play(request,game_name):
-    tem_user = request.user
+    if request.method == "POST" and request.is_ajax:
+        tem_user = request.user
 
-    game=Game.objects.filter(game_name__exact=game_name)
+        game=Game.objects.filter(game_name__exact=game_name)
 
-    if  tem_user.game_set.filter(game_id=game[0].game_id).exists():           #entry
+        if  tem_user.game_set.filter(game_id=game[0].game_id).exists():           #entry
 
-        max_score_wrap=''
-        if len(Score.objects.filter(game_id__exact=game[0].game_id))!=0:
-            max_score=-1
-            for item in Score.objects.filter(game_id__exact=game[0].game_id):
+            max_score_wrap=''
+            if len(Score.objects.filter(game_id__exact=game[0].game_id))!=0:
+                max_score=-1
+                for item in Score.objects.filter(game_id__exact=game[0].game_id):
 
-                if int(item.score)>max_score:
-                    max_score=int(item.score)
-                    max_score_wrap=item
-        dis_score = 100
+                    if int(item.score)>max_score:
+                        max_score=int(item.score)
+                        max_score_wrap=item
+            dis_score = request.POST.get('score',0)
 
 
-        temp_score=''
-        all_scores = Score.objects.filter(player__exact=tem_user).filter(game__exact=game[0].game_id)
-        if len(all_scores)!=0:
-            temp_score = all_scores[0]
-        if dis_score:
-            if len(all_scores)==0:
-                s=Score(score=dis_score,player=tem_user,game=game[0])
-                s.save()
-            else:
-                if dis_score>temp_score.score:
-                    temp_score.score=dis_score
-                    temp_score.save()
-        return render(request, 'playgame.html',{'user':tem_user,'game':game[0],'max_score_wrap':max_score_wrap,'dis_score':dis_score,'yourscore':temp_score})
+            temp_score=''
+            all_scores = Score.objects.filter(player__exact=tem_user).filter(game__exact=game[0].game_id)
+            if len(all_scores)!=0:
+                temp_score = all_scores[0]
+            if dis_score:
+                if len(all_scores)==0:
+                    s=Score(score=dis_score,player=tem_user,game=game[0])
+                    s.save()
+                else:
+                    if dis_score>temp_score.score:
+                        temp_score.score=dis_score
+                        temp_score.save()
+            return render(request, 'playgame.html',{'user':tem_user,'game':game[0],'max_score_wrap':max_score_wrap,'dis_score':dis_score,'yourscore':temp_score})
+        else:
+            return render_to_response('main.html', {'user': tem_user})
     else:
-        return render_to_response('main.html', {'user': tem_user})
+        return HttpResponse("")
 @login_required
 def game_edit(request,game_name):
     tem_user=request.user
