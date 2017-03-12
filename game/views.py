@@ -44,7 +44,7 @@ def logo_login(request):
     categories = set()
     for game in games:
         categories.add(game.game_category)
-    return render_to_response('main.html', {'user': user0,'games':games,'categories':categories})
+    return render_to_response('main.html', {'user': user0})
 
 
 def user_login(request):
@@ -383,7 +383,7 @@ def play(request,game_name):
 
     game=Game.objects.filter(game_name__exact=game_name)
 
-    if len(Game.objects.filter(player__contains=tem_user):#entry
+    if tem_user in game[0].player:#entry
 
         max_score_wrap=''
         if len(Score.objects.filter(game_id__exact=game[0].game_id))!=0:
@@ -397,7 +397,7 @@ def play(request,game_name):
 
 
         temp_score=''
-        all_scores = Score.objects.filter(player__exact=tem_user).filter(game__exact=game[0].game_id)
+        all_scores = Score.objects.filter(player__exact=temp_user).filter(game__exact=game[0].game_id)
         if len(all_scores)!=0:
             temp_score = all_scores[0]
         if dis_score:
@@ -409,7 +409,8 @@ def play(request,game_name):
                     temp_score.score=dis_score
                     temp_score.save()
         return render(request, 'playgame.html',{'user':tem_user,'game':game[0],'max_score_wrap':max_score_wrap,'dis_score':dis_score,'yourscore':temp_score})
-
+    else:
+        return render_to_response('main.html', {'user': tem_user})
 @login_required
 def game_edit(request,game_name):
     tem_user=request.user
