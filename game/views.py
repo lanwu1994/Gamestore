@@ -380,7 +380,7 @@ def payment_success(request,status):
 @login_required
 def play(request,game_name):
 
-    if request.method == "POST" and request.is_ajax:
+    if request.method == "POST":
         error=[]
         error.append(request.POST)
         tem_user = request.user
