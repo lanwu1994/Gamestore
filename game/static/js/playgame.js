@@ -50,7 +50,7 @@ window.addEventListener('message',function(e){
         }),
         success: function(response){
           console.log("Submit score success, sore is " +submitscore);
-          console.log(window.location.href);
+          
               //console.log(data['last_round']);
           $('#last_round').text(submitscore);
               //console.log(data);
