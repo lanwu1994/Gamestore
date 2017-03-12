@@ -49,6 +49,11 @@ window.addEventListener('message',function(e){
         }),
         success: function(response){
           console.log("Submit score success, sore is " +submitscore);
+              //console.log(data['last_round']);
+          $('#last_round').text(submitscore);
+              //console.log(data);
+          // $('#personal_high').text(Number(data['personal_high']).toFixed(2))
+
         },
         error: function(response){
           console.log("error");
