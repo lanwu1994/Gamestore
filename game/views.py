@@ -379,10 +379,10 @@ def payment_success(request,status):
 
 @login_required
 def play(request,game_name):
-
+    error=[]
+    error.append(request.POST)
     if request.method == "POST":
-        error=[]
-        error.append(request.POST)
+        
         tem_user = request.user
 
         game=Game.objects.filter(game_name__exact=game_name)

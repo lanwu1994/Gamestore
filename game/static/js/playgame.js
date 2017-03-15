@@ -1,67 +1,119 @@
+$(document).ready(function () {
+    'use strict';
+    $.expr[":"].contains = $.expr.createPseudo(function (arg) {
+        return function (elem) {
+            return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+        };
+    });
+    $("#search").keyup(function () {
+        var text = $("#search").val();
+        $('.single-game').hide();
+        $("h5:contains(" + text + ")").closest('.single-game').show();
+        $("h3:contains(" + text + ")").closest('.single-game').show();
 
-window.addEventListener('message',function(e){
-    e.preventDefault();
-    var submitscore=e.data.score;
-    document.getElementById('id_score').value=submitscore;
-    console.log(submitscore);
+    });
+    var game_state;
 
+    $(window).on('message', function (evt) {
+        //Note that messages from all origins are accepted
 
+        //Get data from sent message
+        var data = evt.originalEvent.data;
 
-    function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = jQuery.trim(cookies[i]);
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
+        if (data.messageType.localeCompare("SAVE") == 0) {
+            $("#error_message").text("");
+            game_state = data.gameState;
+            var jsonData = JSON.stringify(game_state);
+
+            $('#id_game_state').val(jsonData);
+            $('#state_form').submit();
+
+            //console.log("items: "+data.gameState.playerItems);
+            //console.log("score: "+data.gameState.score);
+            //var formData = JSON.stringify($("#play_form").serializeArray());
+            console.log(data.gameState);
+
+        } else if (data.messageType.localeCompare("LOAD_REQUEST") == 0) {
+            $("#error_message").text("");
+
+            game_state = data.gameState;
+            var jsonData = JSON.stringify(game_state);
+
+            $('#id_game_state').val(jsonData);
+            $('#load_state').submit();
+
+        } else if (data.messageType.localeCompare("SCORE") == 0) {
+            $('#id_score').val(data.score);
+            $('#play_form').submit();
         }
-    }
-    return cookieValue;
-}
-  var csrftoken = getCookie('csrftoken');
-  console.log(csrftoken);
+        else if (data.messageType.localeCompare("SETTING") == 0) {
+            $("#error_message").text("");
+            document.getElementById("iframe1").height = (data.options.height) + "px";
+            document.getElementById("iframe1").width = (data.options.width) + "px";
+        }
+        else if (data.messageType.localeCompare("ERROR") == 0) {
+            $("#error_message").text(data.info);
+        }
 
-      function csrfSafeMethod(method) {
-// these HTTP methods do not require CSRF protection
-          return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-      }
-      $.ajaxSetup({
-  beforeSend: function(xhr, settings) {
-    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-        xhr.setRequestHeader("X-CSRFToken", csrftoken);
-    }
-}
+    });
 });
 
-      $.ajax({
-        type:"POST",
-        url:window.location.href,
-        //url: 'http://twitter.com/',
-        contentType: "application/json; charset=utf-8",
+var play_frm = $('#play_form');
+play_frm.submit(function (e) {
+    $.ajax({
+        type: play_frm.attr('method'),
+        url: play_frm.attr('action'),
+        data: play_frm.serialize(),
 
-        data: JSON.stringify({
-            score:submitscore,
-            csrfmiddlewaretoken: csrftoken
-
-        }),
-        success: function(response){
-          console.log("Submit score success, sore is " +submitscore);
-          
-              //console.log(data['last_round']);
-          $('#last_round').text(submitscore);
-              //console.log(data);
-          // $('#personal_high').text(Number(data['personal_high']).toFixed(2))
-
+        success: function (data) {
+            //console.log(data['last_round']);
+            $('#last_round').text(Number(data['last_round']).toFixed(2))
+            //console.log(data);
+            $('#personal_high').text(Number(data['personal_high']).toFixed(2))
         },
-        error: function(response){
-          console.log("error");
+        error: function (data) {
+            alert("Score submission went wrong. Try again");
         }
+    });
+    e.preventDefault();
+});
 
-      });
+var state_frm = $('#state_form');
+state_frm.submit(function (e) {
+    $.ajax({
+        type: state_frm.attr('method'),
+        url: state_frm.attr('action'),
+        data: state_frm.serialize(),
 
+        success: function (data) {
+            console.log(data)
+            console.log(data['score']);
+            console.log(data['playerItems']);
+        },
+        error: function (data) {
+            alert("Save went wrong. Try again");
+        }
+    });
+    e.preventDefault()
+});
 
+var load_frm = $('#load_state');
+load_frm.submit(function (e) {
+    $.ajax({
+        type: load_frm.attr('method'),
+        url: load_frm.attr('action'),
+        data: load_frm.serialize(),
+
+        success: function (data) {
+            var msg = {
+                "messageType": "LOAD",
+                "gameState": data
+            };
+            window.frames[0].postMessage(msg, "*");
+        },
+        error: function (data) {
+            alert("load went wrong. Try again");
+        }
+    });
+    e.preventDefault()
 });
