@@ -147,6 +147,7 @@ def forget_password(request):
     find_email = request.POST.get('find_email', '')
     tem_user = User.objects.filter(email__exact=find_email)
     mess=''
+    message=''
     if find_email:
         mess = 'E-mail has been sent to your box! Please check and reset password.'
     if len(tem_user)!=0:
