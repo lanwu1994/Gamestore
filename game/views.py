@@ -162,7 +162,7 @@ def forget_password(request):
         #         connection=connection,
         #     ).send()
         mess = mess+message
-    return render(request, 'reset_password_1.html', {'mess': mess,'mesage':message})
+    return render(request, 'reset_password_1.html', {'mess': mess,'message':message})
 
 
 def set_new_password(request,emailToken):
