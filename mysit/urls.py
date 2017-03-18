@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^login/resetpassword/(.*)/$',set_new_password),
     url(r'^category/(.*)/$',category),
     url(r'^activate/(.*)/$',active_user),
-    url(r'^account/password/$',set_new_password),
+    url(r'^account/password/(.*)/$',set_new_password),
     url(r'^accountManager/$',management),
     url(r'^search/$',search_game),
     url(r'^contact/$',contact),
