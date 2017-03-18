@@ -162,7 +162,7 @@ def forget_password(request):
         #         connection=connection,
         #     ).send()
         mess = mess+message
-    return render(request, 'reset_password_1.html', {'mess': mess})
+    return render(request, 'reset_password_1.html', {'mess': mess,'mesage':message})
 
 
 def set_new_password(request,emailToken):
@@ -382,7 +382,7 @@ def play(request,game_name):
     error=[]
     error.append(request.POST)
     if request.method == "POST":
-        
+
         tem_user = request.user
 
         game=Game.objects.filter(game_name__exact=game_name)
