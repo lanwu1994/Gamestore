@@ -153,7 +153,7 @@ def forget_password(request):
     if len(tem_user)!=0:
         token = token_confirm.generate_validate_token(find_email)
         message = "    ".join([
-            u'Hi, {0}, You could retrieve your password here.'.format(tem_user.username),
+            u'Hi, {0}, You could retrieve your password here.'.format(tem_user[0].username),
             u'Please click link to finish:',
             '/'.join(['http://gameplus.herokuapp.com', 'account/password', token])
         ])
