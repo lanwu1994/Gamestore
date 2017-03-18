@@ -12,7 +12,7 @@
 		{% for result in search_games %}
 			<div class="col-sm-4 col-lg-4 col-md-4">
 				<div class="thumbnail">
-					<img src="{{result.game_pic}}" alt="">
+					<img src="/static/pic/what.jpeg"  alt="">
 					<div class="caption">
 						<h4 class="pull-right">${{result.game_price}}</h4>
 						<h4><a href="/gameInfo/{{user.user_email}}{{user.user_password}}/{{game.game_name}}">{{result.game_name}}</a></h4>
