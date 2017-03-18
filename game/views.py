@@ -181,7 +181,7 @@ def set_new_password(request,emailToken):
                 s = tem_user[0]
                 s.password=new_pw
                 s.save()
-
+                return render(request, 'reset_password_2.html', {'mess': s.password})
                 return render(request, 'popupInfo.html')
     return render(request, 'reset_password_2.html', {'mess': mess})
 
