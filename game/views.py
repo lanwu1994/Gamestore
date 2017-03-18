@@ -169,18 +169,20 @@ def forget_password(request):
 
 def set_new_password(request,emailToken):
     mess=''
-    new_pw=request.POST.get('new_pw', '123')
-    new_pw_2 = request.POST.get('new_pw_2', '123')
-    tem_user = User.objects.filter(email__exact=token_confirm.confirm_validate_token(emailToken))
-    if new_pw!=new_pw_2:
-        mess="Passwords don't match!"
-    else:
-        if new_pw!='' and len(tem_user)!=0 and new_pw_2!='':
-            s = tem_user[0]
-            s.password=new_pw
-            s.save()
+    if request.method == "POST":
 
-            return render(request, 'popupInfo.html')
+        new_pw=request.POST.get('new_pw', '123')
+        new_pw_2 = request.POST.get('new_pw_2', '123')
+        tem_user = User.objects.filter(email__exact=token_confirm.confirm_validate_token(emailToken))
+        if new_pw!=new_pw_2:
+            mess="Passwords don't match!"
+        else:
+            if new_pw!='' and len(tem_user)!=0 and new_pw_2!='':
+                s = tem_user[0]
+                s.password=new_pw
+                s.save()
+
+                return render(request, 'popupInfo.html')
     return render(request, 'reset_password_2.html', {'mess': mess})
 
 @login_required
