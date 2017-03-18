@@ -8,21 +8,18 @@
 			<h4>{{game.game_name}}</h4>
 			<p>{{game.game_description}}</p>
 		</div>
-
+		<form class="form-horizontal" role="form" method="post">{% csrf_token %}
 			<div class="form-group">
 				<input type="hidden" class="form-control" id="gameName" name="gameName" value="{{game.game_name}}">
 			</div>
 			<div class="form-group last">
 			<div class="col-sm-offset-3 col-sm-9">
-				<form class="form-horizontal" role="form" method="post" action="/edit/{{game.game_name}}/">{% csrf_token %}
-				<button type="submit" class="btn btn-success btn-sm" id="edit" name="edit" value="edit" >Edit</button>
-				</form>
-				<form class="form-horizontal" role="form" method="post" action="/edit/{{game.game_name}}/">{% csrf_token %}
+				<a href ="/edit/{{game.game_name}}/">edit</a>
+				<!-- <button type="submit" class="btn btn-success btn-sm" id="edit" name="edit" value="edit" >Edit</button> -->
 				<button type="submit" onclick="show_confirm()" class="btn btn-default btn-sm" id="remove" name="remove" value="remove" >Remove</button>
-				</form>
 			</div>
 			</div>
-
+		</form>
 	</div>
 
 </div>
