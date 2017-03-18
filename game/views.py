@@ -178,11 +178,8 @@ def set_new_password(request,emailToken):
             mess="Passwords don't match!"
         else:
             if new_pw!='' and len(tem_user)!=0 and new_pw_2!='':
-                s = tem_user[0]
-                ps=s.password
-                s.password=new_pw
-                s.save()
-                return render(request, 'reset_password_2.html', {'mess':ps})
+                tem_user[0].set_password(new_pw)
+                tem_user[0].save()
                 return render(request, 'popupInfo.html')
     return render(request, 'reset_password_2.html', {'mess': mess})
 
