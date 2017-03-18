@@ -238,10 +238,9 @@ def management(request):
     if inputPassword != '':
         if inputPassword == confirmPassword:
             if inputPassword.strip():
-                s = tem_user
+                tem_user.set_password(inputPassword)
+                tem_user.save()
 
-                s.password = inputPassword
-                s.save()
                 mess2 = 'Password has changed successfully!'
             else:
                 mess2 = 'Password cannot be space!'
