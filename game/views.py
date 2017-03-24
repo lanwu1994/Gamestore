@@ -44,7 +44,7 @@ def logo_login(request):
     categories = set()
     for game in games:
         categories.add(game.game_category)
-    return render_to_response('main.html', {'user': user0})
+    return render_to_response('main.html', {'user': user0,'category':categories})
 
 
 def user_login(request):
