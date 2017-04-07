@@ -66,6 +66,9 @@ play_frm.submit(function (e) {
         data: play_frm.serialize(),
 
         success: function (data) {
+          $.post('submitScore', data), function(result) {
+            console.log(result)
+          }
             //console.log(data['last_round']);
             $('#last_round').text(Number(data['last_round']).toFixed(2))
             //console.log(data);
